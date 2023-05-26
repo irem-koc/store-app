@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,7 +6,24 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 
 import "./ProductItem.css";
+import { Context } from "../../context/Context";
+
 const ProductItem = ({ product }) => {
+    const { cart, setCart } = useContext(Context);
+    const handleCart = () => {
+        if (cart.find((item) => item.id === product.id)) {
+            setCart(
+                cart.map((item) =>
+                    item.id === product.id
+                        ? { ...item, count: item.count + 1 }
+                        : item
+                )
+            );
+        } else {
+            setCart([...cart, { ...product, count: 1 }]);
+        }
+    };
+    console.log(cart);
     return (
         <Card className="card-item" sx={{ width: 300 }}>
             <CardActionArea>
@@ -30,7 +47,9 @@ const ProductItem = ({ product }) => {
                 <Divider />
             </CardActionArea>
             <CardActions>
-                <Button variant="contained">Add to Card</Button>
+                <Button onClick={handleCart} variant="contained">
+                    Add to Card
+                </Button>
             </CardActions>
         </Card>
     );
