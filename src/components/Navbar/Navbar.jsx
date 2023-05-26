@@ -53,7 +53,7 @@ const Navbar = () => {
                             }}
                         >
                             <Link to="/card" style={{ textDecoration: "none" }}>
-                                <div
+                                <span
                                     style={{
                                         display: "flex",
                                         alignItems: "center",
@@ -61,7 +61,7 @@ const Navbar = () => {
                                 >
                                     <span style={{ color: "white" }}>{0}</span>
                                     <ShoppingCartIcon sx={{ color: "white" }} />
-                                </div>
+                                </span>
                             </Link>
                         </Typography>
                     </Box>

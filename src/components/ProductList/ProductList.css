@@ -1,5 +1,10 @@
-.product-list{
-    width: 80%;
+.product-list {
+    width: 77%;
+    margin: 20px auto;
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: center;
+    background-color: rgb(217, 191, 241);
 }

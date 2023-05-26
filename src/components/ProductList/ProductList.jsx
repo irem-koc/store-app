@@ -13,14 +13,13 @@ const ProductList = () => {
             setData(data.products);
         };
         dataFetch();
-    }, []);
-    console.log(data);
+    }, [setData]);
     return !data.length ? (
         <Spinner />
     ) : (
         <div className="product-list">
             {data.map((product) => (
-                <ProductItem product={product} />
+                <ProductItem key={product.id} product={product} />
             ))}
         </div>
     );
