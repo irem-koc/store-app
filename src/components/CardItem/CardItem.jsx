@@ -47,11 +47,12 @@ const CardItem = ({ item }) => {
                 <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
+                    style= {{textAlign: "center"}}
                 >
                     <Button onClick={() => handleCountAmount("increase")}>
                         <AddIcon />
                     </Button>
-                    <Typography>{item.count}</Typography>
+                    <Typography sx={{px: 1, align: "center", m: "auto"}}>{item.count}</Typography>
                     <Button onClick={() => handleCountAmount("decrease")}>
                         <RemoveIcon />
                     </Button>
