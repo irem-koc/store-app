@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Badge, Box, Toolbar, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Context } from "../../context/Context";
 const Navbar = () => {
+    const {cart} = useContext(Context)
     return (
         <div>
             <AppBar
@@ -59,8 +61,11 @@ const Navbar = () => {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <span style={{ color: "white" }}>{0}</span>
-                                    <ShoppingCartIcon sx={{ color: "white" }} />
+                                    <Badge badgeContent={cart.length} color="secondary">
+                                        <ShoppingCartIcon
+                                            sx={{ color: "white" }}
+                                        />
+                                    </Badge>
                                 </span>
                             </Link>
                         </Typography>

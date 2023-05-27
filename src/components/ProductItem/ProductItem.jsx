@@ -23,7 +23,6 @@ const ProductItem = ({ product }) => {
             setCart([...cart, { ...product, count: 1 }]);
         }
     };
-    console.log(cart);
     return (
         <Card className="card-item" sx={{ width: 300 }}>
             <CardActionArea>

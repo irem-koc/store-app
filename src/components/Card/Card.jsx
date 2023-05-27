@@ -1,36 +1,51 @@
 import React, { useContext } from "react";
-
-import Table from "@mui/material/Table";
-
-import Paper from "@mui/material/Paper";
-import TableHead from "@mui/material/TableHead";
-import TableContainer from "@mui/material/TableContainer";
 import "./Card.css";
 import { Context } from "../../context/Context";
 import CardItem from "../CardItem/CardItem";
-import { TableCell, TableRow } from "@mui/material";
+
+// or
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from "@mui/material";
 const Card = () => {
     const { cart, setCart } = useContext(Context);
+    const total = cart.reduce(function (charCount, item) {
+        return charCount + item.count;
+    }, 0);
+    const payment= cart.reduce(function (charCount, item) {
+        return charCount + item.price*item.count;
+    }, 0);;
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer sx={{ width: "80%",mx: "auto"}} component={Paper}>
+            <Table sx={{ minWidth: 650, mx: "auto" }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="right">Description</TableCell>
-                        <TableCell align="right">Count</TableCell>
-                        {/*<TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
+                        <TableCell>Image (100g serving)</TableCell>
+                        <TableCell>Brand</TableCell>
+                        <TableCell>Price</TableCell>
+                        <TableCell align="right">Amount</TableCell>
                     </TableRow>
                 </TableHead>
-                {cart.map((item, i) => (
-                    <CardItem
-                        key={i}
-                        item={item}
-                        cart={cart}
-                        setCart={setCart}
-                    />
-                ))}
+                <TableBody>
+                    {cart.map((item,i) => (
+                        <CardItem key={i} item={item} cart={cart} setCart={setCart} />
+                    ))}
+                    <TableRow>
+                        <TableCell rowSpan={3} />
+                        <TableCell colSpan={2}>Product Count</TableCell>
+                        <TableCell align="right">{total}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Total Payment</TableCell>
+                        <TableCell colSpan={2} align="right">{payment}</TableCell>
+                    </TableRow>
+                </TableBody>
             </Table>
         </TableContainer>
     );

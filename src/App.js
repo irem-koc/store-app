@@ -5,19 +5,21 @@ import Signup from "./components/Signup/Signup";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
 import ContextProvider from "./context/Context";
-
+import { ScopedCssBaseline } from "@mui/material";
 function App() {
     return (
         <BrowserRouter>
             <ContextProvider>
-                <div className="App">
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<ProductList />} exact />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/card" element={<Card />} />
-                    </Routes>
-                </div>
+                <ScopedCssBaseline>
+                    <div className="App">
+                        <Navbar />
+                        <Routes>
+                            <Route path="/" element={<ProductList />} exact />
+                            <Route path="/signup" element={<Signup />} />
+                            <Route path="/card" element={<Card />} />
+                        </Routes>
+                    </div>
+                </ScopedCssBaseline>
             </ContextProvider>
         </BrowserRouter>
     );
