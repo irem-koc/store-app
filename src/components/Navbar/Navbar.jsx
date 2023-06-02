@@ -61,7 +61,7 @@ const Navbar = () => {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <Badge badgeContent={cart.length} color="secondary">
+                                    <Badge badgeContent={cart.length} color="warning">
                                         <ShoppingCartIcon
                                             sx={{ color: "white" }}
                                         />

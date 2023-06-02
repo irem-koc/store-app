@@ -22,11 +22,11 @@ const Card = () => {
         return charCount + item.price*item.count;
     }, 0);;
     return (
-        <TableContainer sx={{ width: "80%",mx: "auto"}} component={Paper}>
+        <TableContainer sx={{ width: "80%", my: "20px" ,mx: "auto"}} component={Paper}>
             <Table sx={{ minWidth: 650, mx: "auto" }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Image (100g serving)</TableCell>
+                        <TableCell>Product Photo</TableCell>
                         <TableCell>Brand</TableCell>
                         <TableCell>Price</TableCell>
                         <TableCell align="right">Amount</TableCell>

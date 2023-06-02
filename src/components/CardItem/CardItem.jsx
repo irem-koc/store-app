@@ -10,6 +10,8 @@ import {
     Typography,
 } from "@mui/material";
 import { Context } from "../../context/Context";
+
+import { useNavigate } from "react-router-dom";
 const CardItem = ({ item }) => {
     const { cart, setCart } = useContext(Context);
     console.log(cart.length);
@@ -21,45 +23,74 @@ const CardItem = ({ item }) => {
                 )
             );
         } else {
-            item.count === 1 ? setCart(cart.filter((ite) => ite.id !== item.id)) :
-            setCart(
-                cart.map((ite) =>
-                    ite.id === item.id ? { ...ite, count: item.count - 1 } : ite
-                )
-            );
+            item.count === 1
+                ? setCart(cart.filter((ite) => ite.id !== item.id))
+                : setCart(
+                      cart.map((ite) =>
+                          ite.id === item.id
+                              ? { ...ite, count: item.count - 1 }
+                              : ite
+                      )
+                  );
         }
     };
+
+    let navigate = useNavigate();
     return item.count ? (
         <TableRow
             key={item.name}
             sx={{
                 width: "100%",
                 "&:last-child td, &:last-child th": { border: 0 },
+                cursor: "pointer",
             }}
         >
-            <TableCell component="th" scope="row">
+            <TableCell
+                onClick={() => {
+                    navigate(`/detail/${item.id}`);
+                }}
+                component="th"
+                scope="row"
+            >
                 <img width={200} src={item.thumbnail} alt={item.title} />
             </TableCell>
-            
-            <TableCell>{item.brand}</TableCell>
-            <TableCell>{item.price}</TableCell>
+
+            <TableCell
+                onClick={() => {
+                    navigate(`/detail/${item.id}`);
+                }}
+            >
+                {item.brand}
+            </TableCell>
+            <TableCell
+                onClick={() => {
+                    navigate(`/detail/${item.id}`);
+                }}
+            >
+                {item.price}
+            </TableCell>
             <TableCell align="right">
                 <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
-                    style= {{textAlign: "center"}}
+                    style={{ textAlign: "center" }}
                 >
-                    <Button onClick={() => handleCountAmount("increase")}>
-                        <AddIcon />
-                    </Button>
-                    <Typography sx={{px: 1, align: "center", m: "auto"}}>{item.count}</Typography>
                     <Button onClick={() => handleCountAmount("decrease")}>
                         <RemoveIcon />
                     </Button>
+                    <Typography sx={{ px: 1, align: "center", m: "auto" }}>
+                        {item.count}
+                    </Typography>
+                    <Button onClick={() => handleCountAmount("increase")}>
+                        <AddIcon />
+                    </Button>
+                    
                 </ButtonGroup>
             </TableCell>
         </TableRow>
-    ) : ""
+    ) : (
+        ""
+    );
 };
 
 export default CardItem;

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
 import ContextProvider from "./context/Context";
 import { ScopedCssBaseline } from "@mui/material";
+import Detail from "./components/Detail/Detail";
 function App() {
     return (
         <BrowserRouter>
@@ -17,6 +18,11 @@ function App() {
                             <Route path="/" element={<ProductList />} exact />
                             <Route path="/signup" element={<Signup />} />
                             <Route path="/card" element={<Card />} />
+                            <Route
+                                exact
+                                path="/detail/:id"
+                                element={<Detail />}
+                            />
                         </Routes>
                     </div>
                 </ScopedCssBaseline>
